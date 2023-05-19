@@ -1,27 +1,21 @@
-var express = require('express');
-var app = express();
 var mysql = require('mysql');
-
-app.listen(3000, function () {
-    console.log('Node server running on http://localhost:3000');
-});
 
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
-    database: "tintuc"
+    password: "123456",
+    database: "mydb"
 });
 
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!!!");
-});
+// con.connect(function (err) {
+//     if (err) throw err;
+//     console.log("Connected!!!");
+// });
 
 var sqlCreate = "CREATE TABLE news (id INTEGER, img VARCHAR(255), title VARCHAR(255), content VARCHAR(255))";
 con.query(sqlCreate, function (err, result) {
     if (err) throw err;
-    console.log("Table created" + result);
+    console.log("Table created");
 });
 
 var sql = "INSERT INTO news (id, img, title, content) VALUES ?";

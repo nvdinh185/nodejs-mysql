@@ -1,10 +1,4 @@
-var express = require('express');
-var app = express();
 var mysql = require('mysql');
-
-app.listen(3000, function () {
-    console.log('Node server running on http://localhost:3000');
-});
 
 var con = mysql.createConnection({
     host: "localhost",
