@@ -4,21 +4,16 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "123456",
-    database: "tintuc"
+    database: "shophoa"
 });
 
 var sqlTintuc = `SELECT tendanhmuctin FROM danhmuctin`
 
-var sqlShophoa = `INSERT INTO loai_hoa (ten_cat) VALUES ("Khai trương"), ("Sin nhật"), ("Ngày cưới"),
-                ("Kỹ niệm"), ("Tình yêu"), ("Hoa bán"),
-                ("Hoa chia buồn"), ("Hoa hạnh phốc"),("Hoa bí"), ("Hoa bầu")`
+var sqlShophoa = `SELECT * FROM loai_hoa`
 
-con.connect(function (err) {
+con.query(sqlShophoa, function (err, result) {
     if (err) throw err;
-    console.log("Connected!");
-    con.query(sqlTintuc, function (err, result) {
-        if (err) throw err;
-        console.log(result);
-        con.end();
-    });
+    console.log(result);
 });
+
+con.end();

@@ -4,7 +4,7 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "123456",
-    database: "tintuc"
+    database: "shophoa"
 });
 
 var sqlTintuc = `CREATE TABLE danhmuctin(
@@ -18,12 +18,8 @@ var sqlShophoa = `CREATE TABLE loai_hoa(
                 ten_cat VARCHAR(50) NOT NULL,
                 PRIMARY KEY (id_cat))`;
 
-con.connect(function (err) {
+con.query(sqlShophoa, function (err, result) {
     if (err) throw err;
-    console.log("Connected!");
-    con.query(sqlTintuc, function (err, result) {
-        if (err) throw err;
-        console.log("Tạo bảng thành công!");
-        con.end();
-    });
+    console.log("Tạo bảng thành công!");
+    con.end();
 });
