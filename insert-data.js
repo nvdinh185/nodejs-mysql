@@ -4,7 +4,7 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "123456",
-    database: "shophoa1"
+    database: "tintuc"
 });
 
 var sqlTintuc = `INSERT INTO danhmuctin (id_danhmuctin, tendanhmuctin) VALUES 
@@ -19,7 +19,7 @@ var sqlShophoa = `INSERT INTO loai_hoa (ten_cat) VALUES ("Khai trương"), ("Sin
 con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-    con.query(sqlShophoa, function (err, result) {
+    con.query(sqlTintuc, function (err, result) {
         if (err) throw err;
         console.log("Đã insert thành công!");
         con.end();
