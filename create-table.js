@@ -8,15 +8,16 @@ var con = mysql.createConnection({
 });
 
 var sqlTintuc = `CREATE TABLE danhmuctin(
-                id_danhmuctin int,
-                tendanhmuctin varchar(255),
-                PRIMARY KEY (id_danhmuctin)
-            )`;
+                    id_danhmuctin int,
+                    tendanhmuctin varchar(255),
+                    PRIMARY KEY (id_danhmuctin)
+                )`;
 
 var sqlShophoa = `CREATE TABLE loai_hoa(
-                id_cat INT NOT NULL AUTO_INCREMENT, 
-                ten_cat VARCHAR(50) NOT NULL,
-                PRIMARY KEY (id_cat))`;
+                    id_cat INT NOT NULL AUTO_INCREMENT, 
+                    ten_cat VARCHAR(50) NOT NULL,
+                    PRIMARY KEY (id_cat)
+                )`;
 
 con.query(sqlShophoa, function (err, result) {
     if (err) throw err;
