@@ -6,12 +6,8 @@ var con = mysql.createConnection({
     password: "123456"
 });
 
-con.connect(function (err) {
+con.query("CREATE DATABASE mydb", function (err, result) {
     if (err) throw err;
-    console.log("Connected!!!");
-    con.query("CREATE DATABASE mydb", function (err, result) {
-        if (err) throw err;
-        console.log("Database created");
-        con.end();
-    });
+    console.log("Database created");
+    con.end();
 });
