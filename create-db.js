@@ -8,6 +8,6 @@ var con = mysql.createConnection({
 
 con.query("CREATE DATABASE mydb", function (err, result) {
     if (err) throw err;
-    console.log("Database created");
+    console.log("Database created", result);
     con.end();
 });

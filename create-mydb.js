@@ -15,13 +15,13 @@ var conn = mysql.createConnection({
 var sqlCreate = "CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))";
 // conn.query(sqlCreate, function (err, result) {
 //     if (err) console.log("Lỗi: " + err);
-//     else console.log("Table created");
+//     else console.log("Table created", result);
 // });
 
-var sqlInsert = "INSERT INTO customers (id, name, address) VALUES (1, 'Company Inc', 'Highway 37')";
+var sqlInsert = "INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')";
 // conn.query(sqlInsert, function (err, result) {
 //     if (err) console.log("Lỗi: " + err);
-//     else console.log("1 record inserted - insertId: " + result.insertId);
+//     else console.log("1 record inserted - insertId: ", result);
 // });
 
 var sql = "INSERT INTO customers (name, address) VALUES ?";
@@ -35,7 +35,7 @@ var values = [
 ];
 // conn.query(sql, [values], function (err, result) {
 //     if (err) throw err;
-//     console.log("Number of records inserted: " + result.affectedRows);
+//     console.log("Number of records inserted: ", result);
 // });
 
 var sqlSelect = "SELECT * FROM customers";
