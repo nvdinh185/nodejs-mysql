@@ -1,12 +1,20 @@
 const mysql = require('mysql');
 const util = require('util');
 
+function generateUuid() {
+    return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 const configDB = {
     host: "localhost",
     user: "root",
     password: "123456",
     database: "students"
 };
+
 // get list students
 async function getListStudents() {
     try {
@@ -27,7 +35,7 @@ async function getStudentById(id) {
         var conn = mysql.createConnection(configDB);
         const query = util.promisify(conn.query).bind(conn);
         const studentById = await query(`SELECT * FROM students WHERE id = '${id}'`)
-        console.log(studentById);
+        console.log(studentById[0]);
     } catch (err) {
         console.log(err);
     } finally {
@@ -50,14 +58,16 @@ async function createStudent(inputData) {
     }
 }
 
-
-// getListStudents();
-// getStudentById('a632-c261-a62-cdde');
-
 const newStudent = {
-    id: 'a632-c261-a62-cdkk',
+    id: generateUuid(),
     name: 'Nguyen Van Dinh',
     address: 'Thua Thien Hue'
 }
 
-createStudent(newStudent);
+const createAndGet = async () => {
+    await createStudent(newStudent);
+    await getListStudents();
+    await getStudentById('0806-3cb7-b6e-2bcd');
+}
+
+createAndGet();
