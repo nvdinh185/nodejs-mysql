@@ -18,42 +18,6 @@ const sqlInsert = `INSERT INTO danhmuctin(id_danhmuctin, tendanhmuctin) VALUES
                 (3, "Tin tức giải trí"), (4, "Du học Nhật Bản"), 
                 (5, "Tin thể thao"), (6, "Tin xã hội")`;
 
-async function createTable() {
-    console.log('Tạo');
-    try {
-        var conn = mysql.createConnection(configDB);
-        const data = await new Promise((resolve, reject) => {
-            conn.query(sqlCreate, function (err, result) {
-                if (err) reject(err);
-                resolve(result);
-            });
-        })
-        console.log(data);
-    } catch (err) {
-        console.log('Lỗi khi tạo: ' + err);
-    } finally {
-        conn.end();
-    }
-}
-
-async function insertData() {
-    console.log('Thêm');
-    try {
-        var conn = mysql.createConnection(configDB);
-        const data = await new Promise((resolve, reject) => {
-            conn.query(sqlInsert, function (err, result) {
-                if (err) reject(err);
-                resolve(result);
-            });
-        });
-        console.log(data);
-    } catch (err) {
-        console.log('Lỗi khi thêm: ' + err);
-    } finally {
-        conn.end();
-    }
-}
-
 async function createAndInsertData() {
     try {
         console.log('Tạo');
@@ -79,6 +43,4 @@ async function createAndInsertData() {
         conn.end();
     }
 }
-// createTable();
-// insertData();
 createAndInsertData();
