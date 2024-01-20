@@ -18,10 +18,6 @@ var sqlInsert = `INSERT INTO danhmuctin(id_danhmuctin, tendanhmuctin) VALUES
                 (3, "Tin tức giải trí"), (4, "Du học Nhật Bản"), 
                 (5, "Tin thể thao"), (6, "Tin xã hội")`;
 
-// var sqlUpdate = `UPDATE danhmuctin SET tendanhmuctin="Toàn cảnh Nhật Bản" WHERE tendanhmuctin="Toàn cảnh nhật Bản"`;
-
-// var sqlDelete = `DELETE FROM danhmuctin WHERE tendanhmuctin="Tin thể thao"`;
-
 var sqlSelect = `SELECT * FROM danhmuctin`;
 
 con.query(sqlCreate, function (err, result) {
@@ -35,18 +31,6 @@ con.query(sqlInsert, function (err, result) {
     console.log("Thêm thành công!", result);
     // con.end();
 });
-
-// con.query(sqlUpdate, function (err, result) {
-//     if (err) throw err;
-//     console.log("Sửa thành công!", result);
-//     // con.end();
-// });
-
-// con.query(sqlDelete, function (err, result) {
-//     if (err) throw err;
-//     console.log("Xóa thành công!", result);
-//     // con.end();
-// });
 
 con.query(sqlSelect, function (err, result) {
     if (err) throw err;
