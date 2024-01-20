@@ -7,13 +7,9 @@ var con = mysql.createConnection({
     database: "shophoa"
 });
 
-var sqlTintuc = `SELECT tendanhmuctin FROM danhmuctin`
+var sqlListHoa = `SELECT * FROM list_hoa`;
 
-var sqlShophoa = `SELECT * FROM loai_hoa`
-
-con.query(sqlShophoa, function (err, result) {
+con.query(sqlListHoa, function (err, result) {
     if (err) throw err;
     console.log(result);
 });
-
-con.end();
