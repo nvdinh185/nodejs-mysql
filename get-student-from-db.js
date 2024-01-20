@@ -1,5 +1,13 @@
 const mysql = require('mysql');
 
+
+function generateUuid() {
+    return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 const configDB = {
     host: "localhost",
     user: "root",
@@ -34,7 +42,7 @@ async function getStudentById(id) {
                 resolve(row);
             })
         })
-        console.log(studentById);
+        console.log(studentById[0]);
     } catch (err) {
         console.log(err);
     } finally {
@@ -49,11 +57,11 @@ async function createStudent(inputData) {
         var conn = mysql.createConnection(configDB);
         const newStudent = await new Promise((resolve, reject) => {
             conn.query(`INSERT INTO students VALUES (?, ?, ?)`,
-                [id, name, address], function (err) {
+                [id, name, address], function (err, result) {
                     if (err) {
                         reject(new Error(err.message));
                     }
-                    resolve(this.changes);
+                    resolve(result);
                 });
         });
         console.log(newStudent);
@@ -64,14 +72,16 @@ async function createStudent(inputData) {
     }
 }
 
-
-// getListStudents();
-// getStudentById('a632-c261-a62-cdde');
-
 const newStudent = {
-    id: 'a632-c261-a62-cdkf',
+    id: generateUuid(),
     name: 'Nguyen Van Dinh',
     address: 'Thua Thien Hue'
 }
 
-createStudent(newStudent);
+const createAndGet = async () => {
+    await createStudent(newStudent);
+    await getListStudents();
+    await getStudentById('a632-c261-a62-cdkp');
+}
+
+createAndGet();
