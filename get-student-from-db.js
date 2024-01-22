@@ -1,6 +1,5 @@
 const mysql = require('mysql');
 
-
 function generateUuid() {
     return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, function (c) {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -13,7 +12,8 @@ const configDB = {
     user: "root",
     password: "123456",
     database: "students"
-};
+}
+
 // get list students
 async function getListStudents() {
     try {

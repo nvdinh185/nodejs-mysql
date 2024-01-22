@@ -13,14 +13,14 @@ const configDB = {
     user: "root",
     password: "123456",
     database: "students"
-};
+}
 
 // get list students
 async function getListStudents() {
     try {
         var conn = mysql.createConnection(configDB);
         const query = util.promisify(conn.query).bind(conn);
-        const listStudents = await query(`SELECT * FROM students`)
+        const listStudents = await query(`SELECT * FROM students`);
         console.log(listStudents);
     } catch (err) {
         console.log(err);
@@ -34,7 +34,7 @@ async function getStudentById(id) {
     try {
         var conn = mysql.createConnection(configDB);
         const query = util.promisify(conn.query).bind(conn);
-        const studentById = await query(`SELECT * FROM students WHERE id = '${id}'`)
+        const studentById = await query(`SELECT * FROM students WHERE id = '${id}'`);
         console.log(studentById[0]);
     } catch (err) {
         console.log(err);
